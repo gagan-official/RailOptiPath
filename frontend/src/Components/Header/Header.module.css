@@ -1,0 +1,12 @@
+.app_Header {
+  background-color: #DBECFF;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #6F6F6F;
+  padding: 1rem;
+  font-family: 'Shrikhand', serif;
+}

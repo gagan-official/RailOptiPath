@@ -1,0 +1,51 @@
+.userInputsCont {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.userInputsCont input {
+  border: none;
+  outline: none;
+  border-radius: var(--innerBorderRadius);
+  padding: var(--inputPadding);
+  width: 100%;
+  background-color: #DDDDDD;
+}
+.userInputsCont input:hover {
+  background-color: #d8d8d8;
+}
+.userInputsCont input:focus {
+  background-color: #d1d1d1;
+}
+
+.userInputsCont button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--inputPadding);
+  padding-right: 1.8rem;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: var(--innerBorderRadius);
+  font-weight: 300;
+  cursor: pointer;
+  position: relative;
+  transition: .2s;
+  transition-property: transform;
+}
+.userInputsCont button:hover {
+  opacity: .8;
+}
+.userInputsCont button:active {
+  transform: scale(.96);
+}
+
+@media only screen and (max-width: 780px) {
+  .userInputsCont {
+    flex-direction: column;
+  }
+}
