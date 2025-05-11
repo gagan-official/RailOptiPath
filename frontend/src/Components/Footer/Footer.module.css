@@ -1,0 +1,53 @@
+.carouselOuterCont {
+  padding: 1rem;
+}
+.carouselInnerCont {
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.carouselInnerCont img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.inwardsAnimate {
+  animation: inwards 1s ease-in-out;
+}
+.outwardsAnimate {
+  animation: outwards 1s ease-in-out;
+}
+.carouselInnerCont button {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  border: none;
+  background-color: yellow;
+}
+.carouselInnerCont button:first-of-type {
+  left: 10px;
+  right: auto;
+}
+.carouselInnerCont button:hover {
+  opacity: .8;
+}
+
+@keyframes inwards {
+  from { translate: 100% }
+  to { translate: 0 }
+}
+@keyframes outwards {
+  from { translate: 0 }
+  to { translate: -100% }
+}

@@ -33,16 +33,16 @@ function SelectComponent({ placeholder, onChange }) {
   return (
     <Select
         isClearable
-        isSearchable
+        // isSearchable
         placeholder={placeholder}
-        className="basic-single"
-        classNamePrefix="select"
-        defaultValue={"Rithala"}
+        // className="basic-single"
+        // classNamePrefix="select"
+        // defaultValue={"Rithala"}
         onChange={onChange}
         name="color"
         options={stations}
         styles={{
-          container: (baseStyles, state) => ({
+          container: (baseStyles) => ({
             ...baseStyles,
             width: "100%",
           }),
@@ -50,5 +50,5 @@ function SelectComponent({ placeholder, onChange }) {
       />
   )
 }
-
+ 
 export default UserInputs;

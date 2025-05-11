@@ -44,7 +44,7 @@ function Stations() {
     },
   ];
   return (
-    <seciton className={styles.stationsCont}>
+    <section className={styles.stationsCont}>
       {staticDataa.map((items, index) => {
         return (
           <div key={index} className={styles.stationTile}>
@@ -53,8 +53,19 @@ function Stations() {
           </div>
         );
       })}
-    </seciton>
+    </section>
   );
 }
 
 export default Stations;
+
+
+const ButtonComp = ({
+  buttonStyle,
+  buttonClasses,
+  otherProps
+}) => {
+  return (
+    <button {...otherProps} style={buttonStyle} className={`${styles.predefinedClass} ${buttonClasses}`}></button>
+  )
+}
