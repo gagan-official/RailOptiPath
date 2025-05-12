@@ -1,50 +1,99 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Footer.module.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 
 function Footer() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [exitPage, setExitPage] = useState(null);
+  const [whichBtn, setWhichBtn] = useState(false);
 
   const handleClick = (right) => {
-    if (right) {
-      if (currentPage === 2) {
-        setCurrentPage(0);
-      } else {
-        setCurrentPage(currentPage + 1);
-      }
+    setExitPage(currentPage);
+    if (right === "right") {
+      console.log(right);
+      setWhichBtn(true);
+      setCurrentPage((prev) => (prev === 2 ? 0 : prev + 1));
+    } else {
+      setWhichBtn(() => false);
+      setCurrentPage((prev) => (prev === 0 ? 2 : prev - 1));
     }
-    else {
-      if (currentPage === 0) {
-        setCurrentPage(2);
-      } else {
-        setCurrentPage(currentPage - 1);
-      }
-    }
-  }
-  console.log(currentPage)
+  };
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setExitPage(null);
+    }, 1000);
+    return () => clearTimeout(timerId);
+  }, [exitPage]);
+
+  console.log(currentPage, whichBtn);
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1707343843982-f8275f3994c5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "/image1.webp",
     },
     {
-      src: "https://images.unsplash.com/photo-1707343843598-39755549ac9a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "/image2.webp",
     },
     {
-      src: "https://images.unsplash.com/photo-1682687220336-bbd659a734e7?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "/image3.webp",
     },
   ];
 
   return (
     <div className={styles.carouselOuterCont}>
       <div className={styles.carouselInnerCont}>
-        <button onClick={handleClick}><FaChevronLeft /></button>
+        <button onClick={handleClick}>
+          <FaChevronLeft />
+        </button>
         {images.map((srcs, index) => {
-          if (index === currentPage) {
-            return <img className={styles.inwardsAnimate} key={index} src={srcs.src} alt="" />;
+          if (whichBtn) {
+            return (
+              <>
+                {index === exitPage && (
+                  <img
+                    className={styles.outwardsAnimate}
+                    key={index}
+                    src={srcs.src}
+                    alt=""
+                  />
+                )}
+                {index === currentPage && (
+                  <img
+                    className={styles.inwardsAnimate}
+                    key={index}
+                    src={srcs.src}
+                    alt=""
+                  />
+                )}
+              </>
+            );
+          } else {
+            if (index === currentPage) {
+              return (
+                <img
+                  className={styles.reverseInwardsAnimate}
+                  key={index}
+                  src={srcs.src}
+                  alt=""
+                />
+              );
+            }
+            if (index === exitPage) {
+              return (
+                <img
+                  className={styles.reverseOutwardsAnimate}
+                  key={index}
+                  src={srcs.src}
+                  alt=""
+                />
+              );
+            }
           }
           return null;
         })}
-        <button onClick={() => handleClick("right")}><FaChevronRight /></button>
+        <button onClick={() => handleClick("right")}>
+          <FaChevronRight />
+        </button>
       </div>
     </div>
   );
